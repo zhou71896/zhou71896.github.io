@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vim," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介 Vim 编辑器是功能强大的跨平台的文本编辑工具，继承自Unix系统的Vi编辑器，支持Linux／Mac OS X／Windows系统，利用它可以建立修改文本文件。进入Vim编辑程序，可以在终端下面输入的命令：1$vim [filename] 其中filename是要编辑器的文件的路径名。如果文件不存在，它将为你建立一个新的文件。Vim编辑程序有三种模式，分别称为 编辑模式， 插入模式，命令模">
+<meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim入门">
+<meta property="og:url" content="https://github.com/zhou71896/2017/08/15/Vim入门/index.html">
+<meta property="og:site_name" content="番茄炒蛋">
+<meta property="og:description" content="简介 Vim 编辑器是功能强大的跨平台的文本编辑工具，继承自Unix系统的Vi编辑器，支持Linux／Mac OS X／Windows系统，利用它可以建立修改文本文件。进入Vim编辑程序，可以在终端下面输入的命令：1$vim [filename] 其中filename是要编辑器的文件的路径名。如果文件不存在，它将为你建立一个新的文件。Vim编辑程序有三种模式，分别称为 编辑模式， 插入模式，命令模">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-15T07:34:40.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim入门">
+<meta name="twitter:description" content="简介 Vim 编辑器是功能强大的跨平台的文本编辑工具，继承自Unix系统的Vi编辑器，支持Linux／Mac OS X／Windows系统，利用它可以建立修改文本文件。进入Vim编辑程序，可以在终端下面输入的命令：1$vim [filename] 其中filename是要编辑器的文件的路径名。如果文件不存在，它将为你建立一个新的文件。Vim编辑程序有三种模式，分别称为 编辑模式， 插入模式，命令模">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/zhou71896/2017/08/15/Vim入门/"/>
+
+
+
+
+
+  <title>Vim入门 | 番茄炒蛋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">番茄炒蛋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2017/08/15/Vim入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sylavin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄炒蛋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vim入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T16:16:17+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><hr>
+<p>Vim 编辑器是功能强大的跨平台的文本编辑工具，继承自Unix系统的Vi编辑器，支持Linux／Mac OS X／Windows系统，利用它可以建立修改文本文件。进入Vim编辑程序，可以在终端下面输入的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$vim</span> [filename]</span><br></pre></td></tr></table></figure></p>
+<p>其中filename是要编辑器的文件的路径名。如果文件不存在，它将为你建立一个新的文件。Vim编辑程序有三种模式，分别称为 编辑模式， 插入模式，命令模式，当运行Vim时，首先进入编辑模式。</p>
+<h2 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h2><hr>
+<p>Vim编辑模式的主要用途时是在被编辑的文件中移动光标的位置。一旦光标移动到所需要的位置时，就可以进行剪切和粘贴正文本，删除正文和插入新的文本。当完成所有的编辑工作后，需要保存编辑器的结果，退出编辑程序回到终端，可以发出ZZ命令，连续两次大写的Z键。</p>
+<p>如果键盘上有上下左右箭头的导航键，就由这些按键来完成光标的移动。另外，可以用下面的键来完成同样的字符移动功能：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">k		上移；</span><br><span class="line">j		下移；</span><br><span class="line">h		左移；</span><br><span class="line">l		右移；</span><br></pre></td></tr></table></figure></p>
+<p>上面这4个按键将光标位置每次移动一行或一个字符。Vim还提供稍大范围移动光标的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctrl+f		在文件中前移一页（相当于page down）；</span><br><span class="line">ctrl+b		在文件中后移一页（相当于page up）；</span><br></pre></td></tr></table></figure></p>
+<p>更大范围的移动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">*		当光标停在一个单词上，*键会在文件内搜索该单词，跳到下处</span><br><span class="line"><span class="comment">#		当光标停在一个单词上，#键在文件内搜索该词，跳到上处</span></span><br><span class="line">(/)		移动到 前／后 句 的开始；</span><br><span class="line">&#123;/&#125;		跳转到 当前/下一个 段落的开始。</span><br><span class="line">g_		到本行最后一个不是blank字符的位置。</span><br><span class="line">fa		到下一个为a的字符处，你也可以fs到下一个为s的字符</span><br><span class="line">t,		到逗号前的第一个字符。逗号可以变成其它字符。</span><br><span class="line">3fa		在当前行查找第三个出现的a。</span><br><span class="line">F/T		和f和t一样，只不过是相反方向；</span><br><span class="line">gg		将光标定位到文件第一行的起始位置；</span><br><span class="line">G		将光标定位到文件最后一行的起始位置；</span><br><span class="line">NG或Ngg		将光标定位到第N行的起始位置。</span><br></pre></td></tr></table></figure></p>
+<p>在屏幕中找到需要的一页时，可以用下面的命令快速移动光标：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">H		将光标移动到屏幕上的起始行（或最上行）</span><br><span class="line">M		将光标移动到屏幕中间；</span><br><span class="line">L		将光标移动到屏幕最后一行。</span><br></pre></td></tr></table></figure></p>
+<p>同样需要注意字母的大小写。H和L命令还可以加数字。入2H表示将光标移动到屏幕的第2行，3L表示将光标移动到屏幕的倒数第3行。<br>将光标移动所要的行是，行内移动 光标可以用下面的命令来实现：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w		右移动光标到下一个字的开头；</span><br><span class="line">e		右移动光标到一个字的末尾；</span><br><span class="line">b		左移光标到前一个字的开头；</span><br><span class="line">0		数字0，左移光标到本行的开始；</span><br><span class="line">$		右移光标，到本行的末尾；</span><br><span class="line">^		移动光标，到本行的第一个非空字符。</span><br></pre></td></tr></table></figure></p>
+<h2 id="搜索匹配"><a href="#搜索匹配" class="headerlink" title="搜索匹配"></a>搜索匹配</h2><p>和许多先进的编辑器一样，Vim提供了强大的字符串搜索功能。要查找文件中指定字或短语的出现的位置，可以用Vim直接进行搜索，而不必以手工方式进行。搜索方法是：键入字符／，后面跟一要搜索的字符串，然后回车键。编辑程序执行正向搜索（即朝文件末尾方向），并在找到指定字符串后，将光标停在该字符串的开头；渐入n命令可以继续执行搜索，找出这一字符串下次出现的位置。用字符？取代／，可以实现反向搜索（朝文件开头方向）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/str1		正向搜索字符串 str1；</span><br><span class="line">n		继续搜索，找出str1字符串下次出现的位置；</span><br><span class="line">N		继续搜索，找出str1字符串上次出现的位置；</span><br><span class="line">？str2		反向搜索字符串 str2。</span><br></pre></td></tr></table></figure></p>
+<p>无论搜索方向如何，当到文件末尾或开头时，搜索工作会循环到文件的另一端并继续执行。Vim中执行搜索匹配最强大的地方是结合正则表达式来搜索，后续将会介绍。</p>
+<h2 id="替换和删除"><a href="#替换和删除" class="headerlink" title="替换和删除"></a>替换和删除</h2><p>Vim常规的删除命令是d,x(前者删除行，后者删除字符)，结合Vim的其它特性可以实现基础的删除功能。将光标定位于文件内指定位置后，可以用其它字符来替换光标所指向的字符，或从当前光标位置删除一个或多个字符或一行，多行。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">rc		用c替换光标所指向的当前字符；</span><br><span class="line">nrc		用c替换光标所指向的当前n个字符；</span><br><span class="line">5rA		用A替换光标所指向的当前5个字符；</span><br><span class="line">x		删除光标所指向的当前字符；</span><br><span class="line">nx		删除光标所指向的前n个字符；</span><br><span class="line">3x		删除光标所指向的前3个字符；</span><br><span class="line">dw		删除光标右侧的字；</span><br><span class="line">3dw		删除光标右侧的3个字；</span><br><span class="line">db		删除光标左侧的字；</span><br><span class="line">ndb		删除光标左侧的n个字；</span><br><span class="line">5db		删除光标左侧的5个字；</span><br><span class="line">dd		删除(剪切)光标所在行，并去除空隙；</span><br><span class="line">3dd		删除(剪切)3行内容，并去除空隙；</span><br></pre></td></tr></table></figure></p>
+<p>其它常用的删除命令有：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d$		从当前光标起删除字符直到行的结束；</span><br><span class="line">d0		从当前光标起删除字符直到行的开始；</span><br><span class="line">J		删除本行的回车符(CR),并和下一行合并。</span><br></pre></td></tr></table></figure></p>
+<p>Vim常规的替换命令有c和s，结合Vim的其它特性可以实现基础的替换功能，不过替换命令执行后，通常会由编辑模式进入插入模式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">s		用输入的正文替换光标所指向的字符；</span><br><span class="line">S		删除当前行，并进入编辑模式；</span><br><span class="line">ns		用输入的正文替换光标右侧n个字符串；</span><br><span class="line">nS		删除当前所在行内的n行，并进入编辑模式；</span><br><span class="line">cw		用输入的正文替换光标右侧的字；</span><br><span class="line">cW		用输入的正文替换从光标到行尾的所有字符；</span><br><span class="line">ncw		用输入的正文替换光标右侧的n个字；</span><br><span class="line">cb		用输入的正文替换光标左侧的字；</span><br><span class="line">ncb		用输入的正文替换光标左侧的n个字；</span><br><span class="line"><span class="built_in">cd</span>		用输入的正文替换光标的所在行；</span><br><span class="line">ncd		用输入的正文替换光标的所在行下面的n行i；</span><br><span class="line">c$		用输入的正文替换从光标开始到本行末尾的所有字符；</span><br><span class="line">c0		用输入的正文替换从本行开头到光标的所有字符。</span><br></pre></td></tr></table></figure></p>
+<h2 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vim/" rel="tag"># vim</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/15/Gradle入门/" rel="next" title="Gradle入门">
+                <i class="fa fa-chevron-left"></i> Gradle入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/28/Mac终端命令基本用法/" rel="prev" title="Mac终端命令基本用法">
+                Mac终端命令基本用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Sylavin</p>
+              <p class="site-description motion-element" itemprop="description">简单高效</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑模式"><span class="nav-number">1.1.</span> <span class="nav-text">编辑模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索匹配"><span class="nav-number">1.2.</span> <span class="nav-text">搜索匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换和删除"><span class="nav-number">1.3.</span> <span class="nav-text">替换和删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制粘贴"><span class="nav-number">1.4.</span> <span class="nav-text">复制粘贴</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sylavin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
