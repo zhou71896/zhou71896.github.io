@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="简单高效 上一文章我们已经用hexo搭建起了我们的一个基础的博客框架，接下来我们要开始写自己的文章。因此今天要和大家分享的是，怎么写文章的一些基础知识。 写作  创建一篇新的文章 1$ hexo new [layout] &amp;lt;title&amp;gt; 你可以在命令中指定文章的布局{layout},默认为post,可以通过修改_config.yml中的default_layout来指定默认布局。 布局">
-<meta name="keywords" content="hexo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="hexo写文章">
-<meta property="og:url" content="https://github.com/zhou71896/2017/08/15/hexo写文章/index.html">
+<meta name="description" content="简单高效">
+<meta property="og:type" content="website">
+<meta property="og:title" content="番茄炒蛋">
+<meta property="og:url" content="https://github.com/zhou71896/page/2/index.html">
 <meta property="og:site_name" content="番茄炒蛋">
-<meta property="og:description" content="简单高效 上一文章我们已经用hexo搭建起了我们的一个基础的博客框架，接下来我们要开始写自己的文章。因此今天要和大家分享的是，怎么写文章的一些基础知识。 写作  创建一篇新的文章 1$ hexo new [layout] &amp;lt;title&amp;gt; 你可以在命令中指定文章的布局{layout},默认为post,可以通过修改_config.yml中的default_layout来指定默认布局。 布局">
+<meta property="og:description" content="简单高效">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-15T07:34:40.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo写文章">
-<meta name="twitter:description" content="简单高效 上一文章我们已经用hexo搭建起了我们的一个基础的博客框架，接下来我们要开始写自己的文章。因此今天要和大家分享的是，怎么写文章的一些基础知识。 写作  创建一篇新的文章 1$ hexo new [layout] &amp;lt;title&amp;gt; 你可以在命令中指定文章的布局{layout},默认为post,可以通过修改_config.yml中的default_layout来指定默认布局。 布局">
+<meta name="twitter:title" content="番茄炒蛋">
+<meta name="twitter:description" content="简单高效">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/zhou71896/2017/08/15/hexo写文章/"/>
+  <link rel="canonical" href="https://github.com/zhou71896/page/2/"/>
 
 
 
 
 
-  <title>hexo写文章 | 番茄炒蛋</title>
+  <title>番茄炒蛋</title>
   
 
 
@@ -145,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,9 +271,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -304,7 +303,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo写文章</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/15/hexo写文章/" itemprop="url">hexo写文章</a></h1>
         
 
         <div class="post-meta">
@@ -376,20 +377,21 @@
       
 
       
-        <p><blockquote>简单高效</blockquote></p>
-<p>上一文章我们已经用hexo搭建起了我们的一个基础的博客框架，接下来我们要开始写自己的文章。<br>因此今天要和大家分享的是，怎么写文章的一些基础知识。</p>
-<h1 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h1><hr>
-<p> 创建一篇新的文章<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure><br> 你可以在命令中指定文章的布局{layout},默认为post,可以通过修改_config.yml中的default_layout来指定默认布局。</p>
-<h2 id="布局（Layout）"><a href="#布局（Layout）" class="headerlink" title="布局（Layout）"></a>布局（Layout）</h2><p>  post    path:   source/_posts<br>  page    path:   source/pagename<br>  draft   path:   source/_drafts</p>
-<h2 id="文件名称"><a href="#文件名称" class="headerlink" title="文件名称"></a>文件名称</h2><p>  Hexo会以默认的标题作为文件名称,但你可以编辑new_post_name参数来改变默认的文件名称。</p>
-<h2 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h2><p>  草稿是hexo的一种特殊布局:draft,这种布局在建立时会被保存到 source/_drafts 文件夹，你可以通过publish命令将草稿移动到source/_posts文件夹，该命令与 new 类似，你也可以在命令行中指定 layout 来布局。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo publish [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></p>
-<p>  草稿不会默认显示在页面中，你可以在执行时加上 –draft 参数,或是把render_drafts参数设为 true 来预览草稿。 </p>
-<h2 id="模版（Scaffold）"><a href="#模版（Scaffold）" class="headerlink" title="模版（Scaffold）"></a>模版（Scaffold）</h2><p>在新建文章时，Hexo会根据scaffolds文件夹内对应的文件来创建文件，例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new photo <span class="string">"My Gallery"</span></span><br></pre></td></tr></table></figure></p>
-<p>在执行这行命令的时候，Hexo会尝试在Scaffold文件夹中寻找photo.md，并根据其内容建立文章。</p>
-<h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h2><p>Front-matter 是文件最上方—分割的区域用于指定个别文件变量的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">title: Hello World</span><br><span class="line">date: 2010/7/13</span><br></pre></td></tr></table></figure></p>
-<h2 id="标签插件-TagPlugin"><a href="#标签插件-TagPlugin" class="headerlink" title="标签插件(TagPlugin)"></a>标签插件(TagPlugin)</h2><p>标签插件和Front-matter中的标签不同，它们是用户在文章中快速插入特定内容的插件</p>
-<h2 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h2><p>在文章中插入引言，可包含作者，来源和标题。更多资料可以查看<a href="https://hexo.io/zh-cn/docs/tag-plugins.html" target="_blank" rel="noopener">详细资料</a></p>
-
+        
+          
+          简单高效
+上一文章我们已经用hexo搭建起了我们的一个基础的博客框架，接下来我们要开始写自己的文章。因此今天要和大家分享的是，怎么写文章的一些基础知识。
+写作
+ 创建一篇新的文章 1$ hexo new [layout] &lt;title&gt; 你可以在命令中指定文章的布局{layout},默认
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/15/hexo写文章/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -404,40 +406,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/08/14/hexo搭建/" rel="next" title="hexo搭建">
-                <i class="fa fa-chevron-left"></i> hexo搭建
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/15/Gradle入门/" rel="prev" title="Gradle入门">
-                Gradle入门 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -447,11 +423,167 @@
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2017/08/14/hexo搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sylavin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄炒蛋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/hexo搭建/" itemprop="url">hexo搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T14:42:43+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简单高效现在很多朋友都比较喜欢用GitHub来搭建静态网站，原因就是省钱简单。所以我也利用hexo+github来搭建了该博客，用于分享交流一些心得和体会。在此将各种操作步骤和一些坑记录在此，以便以后可以使用。
+准备安装
+
+下载安装 node.js，自带npm
+下载安装 git
+下载安装hexo 方
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/14/hexo搭建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -459,10 +591,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -483,17 +611,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -553,22 +672,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写作"><span class="nav-number">1.</span> <span class="nav-text">写作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布局（Layout）"><span class="nav-number">1.1.</span> <span class="nav-text">布局（Layout）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件名称"><span class="nav-number">1.2.</span> <span class="nav-text">文件名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#草稿"><span class="nav-number">1.3.</span> <span class="nav-text">草稿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模版（Scaffold）"><span class="nav-number">1.4.</span> <span class="nav-text">模版（Scaffold）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Front-matter"><span class="nav-number">1.5.</span> <span class="nav-text">Front-matter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签插件-TagPlugin"><span class="nav-number">1.6.</span> <span class="nav-text">标签插件(TagPlugin)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用块"><span class="nav-number">1.7.</span> <span class="nav-text">引用块</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -723,10 +826,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
