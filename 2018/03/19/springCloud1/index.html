@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Spring Cloud Config为分布式系统中的外部化配置提供服务器和客户端支持。通过Config Server，您可以在所有环境中管理应用程序的外部属性。客户端和服务器上的概念与Spring Environment和PropertySource抽象，因此它们非常适合Spring应用程序，但可以与任何运行在任何语言的应用程序一起使用。随着应用程序从开发到测试转移到部署管道中，您可以管理这些环">
+<meta name="description" content="一.springCloud简介Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调导致锅炉板模式，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud配置">
-<meta property="og:url" content="https://github.com/zhou71896/2018/03/19/springCloud2/index.html">
+<meta property="og:title" content="SpringCloud的基本介绍">
+<meta property="og:url" content="https://github.com/zhou71896/2018/03/19/springCloud1/index.html">
 <meta property="og:site_name" content="番茄炒蛋">
-<meta property="og:description" content="Spring Cloud Config为分布式系统中的外部化配置提供服务器和客户端支持。通过Config Server，您可以在所有环境中管理应用程序的外部属性。客户端和服务器上的概念与Spring Environment和PropertySource抽象，因此它们非常适合Spring应用程序，但可以与任何运行在任何语言的应用程序一起使用。随着应用程序从开发到测试转移到部署管道中，您可以管理这些环">
+<meta property="og:description" content="一.springCloud简介Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调导致锅炉板模式，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-19T03:25:51.605Z">
+<meta property="og:updated_time" content="2018-03-19T03:00:42.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringCloud配置">
-<meta name="twitter:description" content="Spring Cloud Config为分布式系统中的外部化配置提供服务器和客户端支持。通过Config Server，您可以在所有环境中管理应用程序的外部属性。客户端和服务器上的概念与Spring Environment和PropertySource抽象，因此它们非常适合Spring应用程序，但可以与任何运行在任何语言的应用程序一起使用。随着应用程序从开发到测试转移到部署管道中，您可以管理这些环">
+<meta name="twitter:title" content="SpringCloud的基本介绍">
+<meta name="twitter:description" content="一.springCloud简介Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调导致锅炉板模式，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/zhou71896/2018/03/19/springCloud2/"/>
+  <link rel="canonical" href="https://github.com/zhou71896/2018/03/19/springCloud1/"/>
 
 
 
 
 
-  <title>SpringCloud配置 | 番茄炒蛋</title>
+  <title>SpringCloud的基本介绍 | 番茄炒蛋</title>
   
 
 
@@ -286,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2018/03/19/springCloud2/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2018/03/19/springCloud1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sylavin">
@@ -303,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringCloud配置</h1>
+          <h1 class="post-title" itemprop="name headline">SpringCloud的基本介绍</h1>
         
 
         <div class="post-meta">
@@ -315,7 +315,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T11:10:44+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T10:03:42+08:00">
                 2018-03-19
               </time>
             
@@ -353,17 +353,40 @@
       
 
       
-        <p>Spring Cloud Config为分布式系统中的外部化配置提供服务器和客户端支持。通过Config Server，您可以在所有环境中管理应用程序的外部属性。客户端和服务器上的概念与Spring Environment和PropertySource抽象，因此它们非常适合Spring应用程序，但可以与任何运行在任何语言的应用程序一起使用。随着应用程序从开发到测试转移到部署管道中，您可以管理这些环境之间的配置，并确保应用程序具有在迁移时所需运行的所有内容。服务器存储后端的默认实现使用git，因此它可以轻松支持配置环境的标签版本，并且可以用于管理内容的各种工具。使用Spring配置很容易添加替代实现并将其插入。</p>
-<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><p>Spring Cloud Config Server的特点：</p>
-<pre><code>* HTTP，用于外部配置的资源API（名称 - 值对或同等YAML内容）
-* 加密和解密属性值（对称或不对称）
-* 使用可轻松嵌入Spring Boot应用程序 @EnableConfigServer配置客户端功能
-* 绑定到配置服务器并Environment使用远程属性来初始化Spring
-* 加密和解密属性值（对称或不对称）
-</code></pre><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-config&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;2.0.0.M8&lt;/version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">            &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;&lt;repositories&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">        &lt;id&gt;spring-milestones&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;Spring Milestones&lt;/name&gt;</span><br><span class="line">        &lt;url&gt;https:<span class="comment">//repo.spring.io/libs-milestone&lt;/url&gt;</span></span><br><span class="line">        &lt;snapshots&gt;</span><br><span class="line">            &lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">        &lt;/snapshots&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">&lt;/repositories&gt;</span><br></pre></td></tr></table></figure>
-<p>只要Spring Boot Actuator和Spring Config Client位于类路径中，任何Spring Boot应用程序都会尝试联系配置服务器<a href="http://localhost:8888，默认值为" target="_blank" rel="noopener">http://localhost:8888，默认值为</a> spring.cloud.config.uri。如果你想改变这个默认，你可以设置spring.cloud.config.uri在bootstrap.[yml | properties] 或通过系统属性或环境变量。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Value</span>(<span class="string">"$&#123;config.name&#125;"</span>)</span><br><span class="line">  String name = <span class="string">"World"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello "</span> + name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(Application.class, args);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure></p>
-<p>案例当中config.name的值（或绑定到在Spring启动方式的任何其他值）可以来自本地配置或远程配置服务器。配置服务器默认优先。要/env在应用程序中查看此端点并查看configServer属性来源。</p>
-<p>要运行您自己的服务器，请使用spring-cloud-config-server依赖关系和@EnableConfigServer。如果您设置spring.config.name=configserver应用程序将在端口8888上运行并提供示例存储库中的数据。您需要根据spring.cloud.config.server.git.uri自己的需要找到配置数据（默认情况下，它是git存储库的位置，可以是本地file:..URL）。</p>
+        <h1 id="一-springCloud简介"><a href="#一-springCloud简介" class="headerlink" title="一.springCloud简介"></a>一.springCloud简介</h1><p>Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调导致锅炉板模式，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑，裸机数据中心和托管平台，如Cloud Foundry。</p>
+<h1 id="二-springCloud的相关特征"><a href="#二-springCloud的相关特征" class="headerlink" title="二.springCloud的相关特征"></a>二.springCloud的相关特征</h1><p>Spring Cloud专注于为典型用例和可扩展性机制提供良好的即时体验，以覆盖其他人。</p>
+<pre><code>* 分布式/版本化配置
+* 服务注册和发现
+* 路由
+* 服务对服务呼叫
+* 负载均衡
+* 断路器
+* 全局锁定
+* 领导选举和集群状态
+* 分布式消息
+</code></pre><h1 id="三-主要项目"><a href="#三-主要项目" class="headerlink" title="三.主要项目"></a>三.主要项目</h1><p>SpringCloud 配置<br>由git存储库支持的集中式外部配置管理。配置资源直接映射到<code>Spring Environment</code>，但如果需要可以由非Spring应用程序使用。</p>
+<p>SpringCloudNetflix<br>与各种Netflix OSS组件(Eureka, Hystrix,Zuul,Archaius等)集成。</p>
+<p>SpringCloudBus<br>用于将服务和服务实例与分布式消息一起链接的事件总线。用于跨集体传播状态更改(例如配置更改事件)。</p>
+<p>CludFoundry的SpringCloud<br>将您的应用程序与PivotalCloudFoundry集成。提供服务发现实现，还可以轻松实现SSO和OAuth2保护的资源。</p>
+<p>SpringCloud开放式服务代理<br>为构建实现OpenServiceBroker API的服务代理提供了一个起点。</p>
+<p>Spring云群集<br>领导选举<br>和常见的有状态模式,为Zookeeper,Redis,Hazelcast,Consul提供和实施。</p>
+<p>Spring Cloud Consul<br>与Hashicorp Consul进行服务发现和配置管理。</p>
+<p>Spring Cloud安全<br>为Zuul代理中的负载均衡OAuth2休息客户端和身份验证报头中继提供支持。</p>
+<p>Spring Cloud Sleuth(Spring云侦探)<br>Spring Cloud应用程序的分布式跟踪，与Zipkin,HTrance和基于日志的(列如ELK)跟踪兼容</p>
+<p>Spring云数据流<br>现代运行时组合式微服务应用程序的云本地编排服务。易于使用的DSL，拖方式的GUI和REST-API一起简化了基于微服务的数据管道的整体编排</p>
+<p>Spring Cloud Data Flow(Spring云数据流)<br>现代运行时组合式服务应用程序的云本地编排服务。易于使用的DSL,拖方式GUI和REST-API一起简化了基于微服务的数据管道的整体编排。</p>
+<p>Spring Cloud Stream<br>轻量级事件驱动的微服务框架，可快速构建可连接到外部系统的应用程序。使用Apache Kafka或RabbitMQ在SpringBoot应用程序之间发送和接收消息的简单声明模型。</p>
+<p>Spring Cloud Stream 应用程序启动器<br>SpringCloudStreamAppStarters是基于SpringBootIntergration应用程序,可与外部系统集成。</p>
+<p>Spring Cloud Task<br>一个短生命周期的微服务框架，用于快速构建执行有限数据处理的应用程序。向SpringBoot应用程序添加功能性和非功能性功能的简单声明。</p>
+<p>Spring Cloud Task App Starter<br>SpringCloud任务应用程序启动器是SpringBoot应用程序，可能是任何进程，包括不能永久运行的SpringBatch作业,并且会在有限的数据处理期结束/停止。</p>
+<p>Spring Cloud ZooKeeper<br>使用ApacheZookeeper进行服务发现和配置管理。</p>
+<p>Spring Cloud for Amazon Web Services<br>与托管的AmazonWebServices轻松集成。它提供了一种使用众所周知的Spring接口和API(如消息传递或者缓存API)与AWS提供的服务进行交互的便捷方式。开发人员可以围绕托管服务构建应用程序，而无需关心基础框架或维护。</p>
+<p>Spring Cloud Connectors<br>让各种平台上的PaaS应用程序轻松连接到后端服务，如数据库和消息代理（该项目以前称为“Spring Cloud”）。</p>
+<p>Spring Cloud Starters<br>Spring Boot式初学者项目，可以减轻Spring Cloud消费者的依赖性管理。（作为一个项目终止并与Angel.SR2之后的其他项目合并。）</p>
+<p>Spring Cloud CLI<br>SPring BOot CLI 插件，用于在Groovy中快速创建Spring Cloud组件应用程序</p>
+<p>Spring Cloud Contract<br>Spring Cloud Contract是一个涵盖各种解决方案的综合项目,可帮助用户成功实施消费者驱动合同方法。</p>
+<p>Spring Cloud Gateway(SpringCloud网关)<br>Spring Cloud Gateway是基于ProjectReactor的只能可编程路由器。</p>
+<p>Spring Cloud OpenFegin<br>Spring Cloud OpenFegin通过自动配置和绑定到SpringEnvironment和其他Spring编程模型成语来为SpringBoot应用程序提供集成。</p>
 
       
     </div>
@@ -388,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/19/springCloud1/" rel="next" title="SpringCloud的基本介绍">
-                <i class="fa fa-chevron-left"></i> SpringCloud的基本介绍
+              <a href="/2018/03/16/java常用面试题/" rel="next" title="java常用面试题">
+                <i class="fa fa-chevron-left"></i> java常用面试题
               </a>
             
           </div>
@@ -398,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/19/springBoot1/" rel="prev" title="SpringBoot(一)">
-                SpringBoot(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/19/springCloud2/" rel="prev" title="SpringCloud配置">
+                SpringCloud配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征"><span class="nav-number">1.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速开始"><span class="nav-number">2.</span> <span class="nav-text">快速开始</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-springCloud简介"><span class="nav-number">1.</span> <span class="nav-text">一.springCloud简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-springCloud的相关特征"><span class="nav-number">2.</span> <span class="nav-text">二.springCloud的相关特征</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-主要项目"><span class="nav-number">3.</span> <span class="nav-text">三.主要项目</span></a></li></ol></div>
             
 
           </div>
