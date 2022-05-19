@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="访问mysql当中的数据这个教程将会指导你如何创建一个连接mysql数据库的Spring应用,主要使用的SpringData JPA技术来连接数据库，但是这只是其中的选择之一(你也可以使用Spring JDBC) 要做什么呢?你将会创建一个MySQL的数据库,创建一个Spring application 并且连接一个新建的数据库 需要什么呢? mysql 5.6+.如果你有安装docker的话，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springBoot(二)">
+<meta property="og:url" content="https://github.com/zhou71896/2018/03/20/springBoot2/index.html">
+<meta property="og:site_name" content="番茄炒蛋">
+<meta property="og:description" content="访问mysql当中的数据这个教程将会指导你如何创建一个连接mysql数据库的Spring应用,主要使用的SpringData JPA技术来连接数据库，但是这只是其中的选择之一(你也可以使用Spring JDBC) 要做什么呢?你将会创建一个MySQL的数据库,创建一个Spring application 并且连接一个新建的数据库 需要什么呢? mysql 5.6+.如果你有安装docker的话，可">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-20T06:42:47.000Z">
+<meta property="article:modified_time" content="2022-05-19T03:57:47.094Z">
+<meta property="article:author" content="Sylavin">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/zhou71896/2018/03/20/springBoot2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>springBoot(二) | 番茄炒蛋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">番茄炒蛋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2018/03/20/springBoot2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sylavin">
+      <meta itemprop="description" content="简单高效">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄炒蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          springBoot(二)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-20 14:42:47" itemprop="dateCreated datePublished" datetime="2018-03-20T14:42:47+08:00">2018-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 11:57:47" itemprop="dateModified" datetime="2022-05-19T11:57:47+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="访问mysql当中的数据"><a href="#访问mysql当中的数据" class="headerlink" title="访问mysql当中的数据"></a>访问mysql当中的数据</h1><p>这个教程将会指导你如何创建一个连接mysql数据库的Spring应用,主要使用的SpringData JPA技术来连接数据库，但是这只是其中的选择之一(你也可以使用Spring JDBC)</p>
+<h1 id="要做什么呢"><a href="#要做什么呢" class="headerlink" title="要做什么呢?"></a>要做什么呢?</h1><p>你将会创建一个MySQL的数据库,创建一个Spring application 并且连接一个新建的数据库</p>
+<h1 id="需要什么呢"><a href="#需要什么呢" class="headerlink" title="需要什么呢?"></a>需要什么呢?</h1><ul>
+<li>mysql 5.6+.如果你有安装docker的话，可以试试作为装载器运行数据库</li>
+<li>大约15分钟</li>
+<li>你喜欢的IDE</li>
+<li>JDK 1.8+</li>
+<li>Gradle 2.3+ 或者 Maven 3.0+</li>
+<li>你也可以直接导入代码到你的IDE</li>
+</ul>
+<h1 id="完善每一步"><a href="#完善每一步" class="headerlink" title="完善每一步"></a>完善每一步</h1><p>用Maven来构建当前的项目<br>首先你要创建你的文件结构, 你可以创建 mkdir -p src&#x2F;main&#x2F;java&#x2F;hello (在*nix系统上面)<br>以下是pom.xml文件的相关配置:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;project xmlns=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line">    xsi:schemaLocation=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br><span class="line">    &lt;modelVersion&gt;<span class="number">4.0</span><span class="number">.0</span>&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;gs-mysql-data&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">0.1</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">2.0</span><span class="number">.0</span>.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- JPA <span class="title function_">Data</span> <span class="params">(We are going to use Repositories, Entities, Hibernate, etc...)</span> --&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- Use MySQL Connector-J --&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;java.version&gt;<span class="number">1.8</span>&lt;/java.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p>我们可以看看Spring Boot Maven plugin提供了很多方便的特征:</p>
+<ul>
+<li>它手机了所有在classpath的jar,并且打包出单独可以执行的jar包，让执行和运输到你的服务上变的更加方便。</li>
+<li>它会搜索所有的public static void main() 方法把它标记为可执行的类。</li>
+<li>并且它提供了一个解决依赖版本的方案，你可以重新任何你想写的版本。<br>创建数据库<br>来到后台的终端，打开MySQL 客户端<br>比如说在windows下面的命令行:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+创建了一个新的数据库<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create database db_example; -- 创建一个新的数据库</span><br><span class="line">create user <span class="string">&#x27;springuser&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified by <span class="string">&#x27;root&#x27;</span>; -- 创建用户</span><br><span class="line">grant all on db_example.* to <span class="string">&#x27;springuser&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> -- 把所有的权限给这个新的用户</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>创建一个application.properties文件<br>SpringBoot当中会默认给你一个默认的选择，默认的数据库是h2。因此当你想要改变并且使用其他的数据库的时候，你要在application.properties文件中定义相关的属性<br>具体的文件创建路径如下:<br>src&#x2F;main&#x2F;resources&#x2F;application.properties</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spring.jpa.hibernate.ddl-auto=create</span><br><span class="line">spring.datasource.url=jdbc:mysql:<span class="comment">//localhost:3306/db_example</span></span><br><span class="line">spring.datasource.username=springuser</span><br><span class="line">spring.datasource=springuser</span><br><span class="line">spring.datasource.password=ThePassword</span><br></pre></td></tr></table></figure>
+<p>此处,spring.jpa.hibernate.ddl-auto的值能够是none,update,create,create-drop<br>    * none 这个是mysql的默认配置，数据库的结构没有改变<br>    * update Hibernate 根据给出的实体结构改变了数据库<br>    * create 每次创建数据库，但是在关闭的时候不会丢弃它<br>    * create-drop 创建数据库，当SessionFactory关闭的时候丢弃它<br>此处我们使用的是create因为我们没有相关的数据库结构,再第一次运行了之后，我们在把当前的模式切换为update或者none根据程序的需要。在我们对当前的数据库的机构改变了之后我们改成update。<br>默认的数据库是H2并且它所选用的模式是create-drop。但对于其他像MySQL是none</p>
+<h1 id="创建-Entity-model"><a href="#创建-Entity-model" class="headerlink" title="创建@Entity model"></a>创建@Entity model</h1><p>src&#x2F;main&#x2F;java&#x2F;hello&#x2F;User.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GenerationType;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span> <span class="comment">// This tells Hibernate to make a table out of this class</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy=GenerationType.AUTO)</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> Integer <span class="title function_">getId</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setId</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">getEmail</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> email;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setEmail</span><span class="params">(String email)</span> &#123;</span><br><span class="line">		<span class="built_in">this</span>.email = email;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个实体类将会通过Hibernate自动被翻译到表当中</p>
+<h1 id="创建repository"><a href="#创建repository" class="headerlink" title="创建repository"></a>创建repository</h1><p>src&#x2F;main&#x2F;java&#x2F;hello&#x2F;UserRepository.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.CrudRepository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hello.User;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository</span></span><br><span class="line"><span class="comment">// CRUD refers Create, Read, Update, Delete</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserRepository</span> <span class="keyword">extends</span> <span class="title class_">CrudRepository</span>&lt;User, Long&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个接口,将会自动实现通过Spring相同名称的bean叫做userRepository</p>
+<h1 id="为你的Spring应用创建一个新的控制器"><a href="#为你的Spring应用创建一个新的控制器" class="headerlink" title="为你的Spring应用创建一个新的控制器"></a>为你的Spring应用创建一个新的控制器</h1><p>src&#x2F;main&#x2F;java&#x2F;hello&#x2F;MainController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hello.User;</span><br><span class="line"><span class="keyword">import</span> hello.UserRepository;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span>    <span class="comment">// This means that this class is a Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(path=&quot;/demo&quot;)</span> <span class="comment">// This means URL&#x27;s start with /demo (after Application path)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainController</span> &#123;</span><br><span class="line">	<span class="meta">@Autowired</span> <span class="comment">// This means to get the bean called userRepository</span></span><br><span class="line">	           <span class="comment">// Which is auto-generated by Spring, we will use it to handle the data</span></span><br><span class="line">	<span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@GetMapping(path=&quot;/add&quot;)</span> <span class="comment">// Map ONLY GET Requests</span></span><br><span class="line">	<span class="keyword">public</span> <span class="meta">@ResponseBody</span> String <span class="title function_">addNewUser</span> <span class="params">(<span class="meta">@RequestParam</span> String name</span></span><br><span class="line"><span class="params">			, <span class="meta">@RequestParam</span> String email)</span> &#123;</span><br><span class="line">		<span class="comment">// @ResponseBody means the returned String is the response, not a view name</span></span><br><span class="line">		<span class="comment">// @RequestParam means it is a parameter from the GET or POST request</span></span><br><span class="line"></span><br><span class="line">		<span class="type">User</span> <span class="variable">n</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">		n.setName(name);</span><br><span class="line">		n.setEmail(email);</span><br><span class="line">		userRepository.save(n);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Saved&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@GetMapping(path=&quot;/all&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> <span class="meta">@ResponseBody</span> Iterable&lt;User&gt; <span class="title function_">getAllUsers</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="comment">// This returns a JSON or XML with the users</span></span><br><span class="line">		<span class="keyword">return</span> userRepository.findAll();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="执行当前的程序"><a href="#执行当前的程序" class="headerlink" title="执行当前的程序"></a>执行当前的程序</h1><p>通过Applicaiton嵌入到Tomcat servlet容器当中来发布。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试当前的程序"><a href="#测试当前的程序" class="headerlink" title="测试当前的程序"></a>测试当前的程序</h1><p>在刚才的基础上我们来测试当前的应用<br>localhost:8080&#x2F;demo&#x2F;all 获取所有的数据 localhost:8080&#x2F;demo&#x2F;add 添加一个用户的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="string">&#x27;localhost:8080/demo/add?name=First&amp;email=someemail@someemailprovider.com&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>回应的结果应该是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Saved</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="string">&#x27;localhost:8080/demo/all&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>回应的结果应该是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;<span class="string">&quot;id&quot;</span>:<span class="number">1</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;First&quot;</span>,<span class="string">&quot;email&quot;</span>:<span class="string">&quot;someemail@someemailprovider.com&quot;</span>&#125;]</span><br></pre></td></tr></table></figure>
+
+<h1 id="改变一下安全配置"><a href="#改变一下安全配置" class="headerlink" title="改变一下安全配置"></a>改变一下安全配置</h1><p>如果将当前的发布到正式环境，你也许会遭遇到SQL 注入的攻击，因此我们需要的SQL命令,作为安全起见的话，在我们发布之前我们需要收回相关的权限。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; revoke all on db_example.* from <span class="string">&#x27;springuser&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>在收回了所有的关于当前用户的权限之后，我们需要我们的应用程序能够做一些事情，因此我们需要给它赋予以下权限:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant select, insert, delete, update on db_example.* to <span class="string">&#x27;springuser&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>并且现在我们需要改变以下我们的配置文件 src&#x2F;main&#x2F;resources&#x2F;application.properties</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.jpa.hibernate.ddl-auto=none</span><br></pre></td></tr></table></figure>
+<p>只有在你第一磁需要根据你的实体在表中创建实体才需要吧状态改为 create</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>恭喜！你已经开发了一个可以链接MySQL数据库的Spring application!</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/19/springBoot1/" rel="prev" title="SpringBoot(一)">
+      <i class="fa fa-chevron-left"></i> SpringBoot(一)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/03/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1/" rel="next" title="设计模式1">
+      设计模式1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BF%E9%97%AEmysql%E5%BD%93%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">访问mysql当中的数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88%E5%91%A2"><span class="nav-number">2.</span> <span class="nav-text">要做什么呢?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88%E5%91%A2"><span class="nav-number">3.</span> <span class="nav-text">需要什么呢?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E6%AF%8F%E4%B8%80%E6%AD%A5"><span class="nav-number">4.</span> <span class="nav-text">完善每一步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Entity-model"><span class="nav-number">5.</span> <span class="nav-text">创建@Entity model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BArepository"><span class="nav-number">6.</span> <span class="nav-text">创建repository</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BD%A0%E7%9A%84Spring%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">为你的Spring应用创建一个新的控制器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%BD%93%E5%89%8D%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-number">8.</span> <span class="nav-text">执行当前的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%BD%93%E5%89%8D%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-number">9.</span> <span class="nav-text">测试当前的程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%8B%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">10.</span> <span class="nav-text">改变一下安全配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sylavin</p>
+  <div class="site-description" itemprop="description">简单高效</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sylavin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

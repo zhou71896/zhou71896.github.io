@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简单高效  新建分支首先，每次开发新功能，都应该新建一个单独的分支。 1234567# 获取主干最新代码$ git checkout master$ git pull# 新建一个开发分支myfeature$ git checkout -b myfeature  提交分支commit分支修改后，就可以提交commit了。 12345$ git add --all$ git status$ git c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git使用教程">
+<meta property="og:url" content="https://github.com/zhou71896/2017/08/29/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="番茄炒蛋">
+<meta property="og:description" content="简单高效  新建分支首先，每次开发新功能，都应该新建一个单独的分支。 1234567# 获取主干最新代码$ git checkout master$ git pull# 新建一个开发分支myfeature$ git checkout -b myfeature  提交分支commit分支修改后，就可以提交commit了。 12345$ git add --all$ git status$ git c">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-29T10:13:55.000Z">
+<meta property="article:modified_time" content="2022-05-19T03:57:47.087Z">
+<meta property="article:author" content="Sylavin">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/zhou71896/2017/08/29/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Git使用教程 | 番茄炒蛋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">番茄炒蛋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2017/08/29/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sylavin">
+      <meta itemprop="description" content="简单高效">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄炒蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git使用教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-29 18:13:55" itemprop="dateCreated datePublished" datetime="2017-08-29T18:13:55+08:00">2017-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 11:57:47" itemprop="dateModified" datetime="2022-05-19T11:57:47+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>简单高效</endblockquote>
+
+<h2 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h2><p>首先，每次开发新功能，都应该新建一个单独的分支。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取主干最新代码</span></span><br><span class="line">$ git checkout master</span><br><span class="line">$ git pull</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个开发分支myfeature</span></span><br><span class="line">$ git checkout -b myfeature</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="提交分支commit"><a href="#提交分支commit" class="headerlink" title="提交分支commit"></a>提交分支commit</h2><p>分支修改后，就可以提交commit了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git add --all</span><br><span class="line">$ git status</span><br><span class="line">$ git commit --verbose</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>git add 命令的all参数，表示保存所有变化（包括新建、修改和删除）。从Git 2.0开始，all是 git add 的默认参数，所以也可以用 git add . 代替。<br>git status 命令，用来查看发生变动的文件。<br>git commit 命令的verbose参数，会列出 diff 的结果。</p>
+<h2 id="撰写提交信息"><a href="#撰写提交信息" class="headerlink" title="撰写提交信息"></a>撰写提交信息</h2><p>提交commit时，必须给出完整扼要的提交信息，下面是一个范本。<br>第一行是不超过50个字的提要，然后空一行，罗列出改动原因、主要变动、以及需要注意的问题。最后，提供对应的网址（比如Bug ticket）。</p>
+<h2 id="与主干同步"><a href="#与主干同步" class="headerlink" title="与主干同步"></a>与主干同步</h2><p>分支的开发过程中，要经常与主干保持同步。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git fetch origin</span><br><span class="line">$ git rebase origin/master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="合并commit"><a href="#合并commit" class="headerlink" title="合并commit"></a>合并commit</h2><p>分支开发完成后，很可能有一堆commit，但是合并到主干的时候，往往希望只有一个（或最多两三个）commit，这样不仅清晰，也容易管理。<br>那么，怎样才能将多个commit合并呢？这就要用到 git rebase 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git rebase -i origin/master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>git rebase命令的i参数表示互动（interactive），这时git会打开一个互动界面，进行下一步操作。<br>下面采用<a target="_blank" rel="noopener" href="https://robots.thoughtbot.com/git-interactive-rebase-squash-amend-rewriting-history">Tute Costa</a>的例子，来解释怎么合并commit。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pick 07c5abd Introduce OpenPGP and teach basic usage</span><br><span class="line">pick de9b1eb Fix PostChecker::Post<span class="comment">#urls</span></span><br><span class="line">pick 3e7ee36 Hey kids, stop all the highlighting</span><br><span class="line">pick fa20af3 git interactive rebase, squash, amend</span><br><span class="line"></span><br><span class="line"><span class="comment"># Rebase 8db7e8b..fa20af3 onto 8db7e8b</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Commands:</span></span><br><span class="line"><span class="comment">#  p, pick = use commit</span></span><br><span class="line"><span class="comment">#  r, reword = use commit, but edit the commit message</span></span><br><span class="line"><span class="comment">#  e, edit = use commit, but stop for amending</span></span><br><span class="line"><span class="comment">#  s, squash = use commit, but meld into previous commit</span></span><br><span class="line"><span class="comment">#  f, fixup = like &quot;squash&quot;, but discard this commit&#x27;s log message</span></span><br><span class="line"><span class="comment">#  x, exec = run command (the rest of the line) using shell</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># These lines can be re-ordered; they are executed from top to bottom.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If you remove a line here THAT COMMIT WILL BE LOST.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># However, if you remove everything, the rebase will be aborted.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Note that empty commits are commented out</span></span><br></pre></td></tr></table></figure>
+<p>上面的互动界面，先列出当前分支最新的4个commit（越下面越新）。每个commit前面有一个操作命令，默认是pick，表示该行commit被选中，要进行rebase操作。<br>4个commit的下面是一大堆注释，列出可以使用的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pick：正常选中</span><br><span class="line">reword：选中，并且修改提交信息；</span><br><span class="line">edit：选中，rebase时会暂停，允许你修改这个commit（参考这里）</span><br><span class="line">squash：选中，会将当前commit与上一个commit合并</span><br><span class="line">fixup：与squash相同，但不会保存当前commit的提交信息</span><br><span class="line"><span class="built_in">exec</span>：执行其他shell命令</span><br></pre></td></tr></table></figure>
+<p>上面这6个命令当中，squash和fixup可以用来合并commit。先把需要合并的commit前面的动词，改成squash（或者s）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pick 07c5abd Introduce OpenPGP and teach basic usage</span><br><span class="line">s de9b1eb Fix PostChecker::Post<span class="comment">#urls</span></span><br><span class="line">s 3e7ee36 Hey kids, stop all the highlighting</span><br><span class="line">pick fa20af3 git interactive rebase, squash, amend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这样一改，执行后，当前分支只会剩下两个commit。第二行和第三行的commit，都会合并到第一行的commit。提交信息会同时包含，这三个commit的提交信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is a combination of 3 commits.</span></span><br><span class="line"><span class="comment"># The first commit&#x27;s message is:</span></span><br><span class="line">Introduce OpenPGP and teach basic usage</span><br><span class="line"></span><br><span class="line"><span class="comment"># This is the 2nd commit message:</span></span><br><span class="line">Fix PostChecker::Post<span class="comment">#urls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This is the 3rd commit message:</span></span><br><span class="line">Hey kids, stop all the highlighting</span><br></pre></td></tr></table></figure>
+<p>如果将第三行的squash命令改成fixup命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pick 07c5abd Introduce OpenPGP and teach basic usage</span><br><span class="line">s de9b1eb Fix PostChecker::Post<span class="comment">#urls</span></span><br><span class="line">f 3e7ee36 Hey kids, stop all the highlighting</span><br><span class="line">pick fa20af3 git interactive rebase, squash, amend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行结果相同，还是会生成两个commit，第二行和第三行的commit，都合并到第一行的commit。但是，新的提交信息里面，第三行commit的提交信息，会被注释掉。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># This is a combination of 3 commits.</span></span><br><span class="line"><span class="comment"># The first commit&#x27;s message is:</span></span><br><span class="line">Introduce OpenPGP and teach basic usage</span><br><span class="line"></span><br><span class="line"><span class="comment"># This is the 2nd commit message:</span></span><br><span class="line">Fix PostChecker::Post<span class="comment">#urls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This is the 3rd commit message:</span></span><br><span class="line"><span class="comment"># Hey kids, stop all the highlighting</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h2><p>合并commit后，就可以推送当前分支到远程仓库了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git push --force origin myfeature</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>git push命令要加上force参数，因为rebase以后，分支历史改变了，跟远程分支不一定兼容，有可能要强行推送<a target="_blank" rel="noopener" href="http://willi.am/blog/2014/08/12/the-dark-side-of-the-force-push/">参见这里</a>。</p>
+<h2 id="发出Pull-Request"><a href="#发出Pull-Request" class="headerlink" title="发出Pull Request"></a>发出Pull Request</h2><p>提交到远程仓库以后，就可以发出 Pull Request 到master分支，然后请求别人进行代码review，确认可以合并到master。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/28/Mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="prev" title="Mac终端命令基本用法">
+      <i class="fa fa-chevron-left"></i> Mac终端命令基本用法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/10/Swift%E5%AD%A6%E4%B9%A0(1)/" rel="next" title="Swift学习(1)">
+      Swift学习(1) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-number">1.</span> <span class="nav-text">新建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%88%86%E6%94%AFcommit"><span class="nav-number">2.</span> <span class="nav-text">提交分支commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%B0%E5%86%99%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF"><span class="nav-number">3.</span> <span class="nav-text">撰写提交信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E4%B8%BB%E5%B9%B2%E5%90%8C%E6%AD%A5"><span class="nav-number">4.</span> <span class="nav-text">与主干同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6commit"><span class="nav-number">5.</span> <span class="nav-text">合并commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">6.</span> <span class="nav-text">推送到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%87%BAPull-Request"><span class="nav-number">7.</span> <span class="nav-text">发出Pull Request</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sylavin</p>
+  <div class="site-description" itemprop="description">简单高效</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sylavin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

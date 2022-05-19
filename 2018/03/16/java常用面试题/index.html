@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1.什么是可变参数?  在 Java 5 中提供了变长参数，允许在调用方法时传入不定长度的参数。  变长参数是Java的一个语法糖，本质上还是基于数组的实现: 12void foo(String... args);void foo(String[] args); 2.断言的用途?断言是在Java1.4中引入的。它能让验证假设。如果断言失败（即返回false），就会抛出AssertionError（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java常用面试题">
+<meta property="og:url" content="https://github.com/zhou71896/2018/03/16/java%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="番茄炒蛋">
+<meta property="og:description" content="1.什么是可变参数?  在 Java 5 中提供了变长参数，允许在调用方法时传入不定长度的参数。  变长参数是Java的一个语法糖，本质上还是基于数组的实现: 12void foo(String... args);void foo(String[] args); 2.断言的用途?断言是在Java1.4中引入的。它能让验证假设。如果断言失败（即返回false），就会抛出AssertionError（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-16T05:25:14.000Z">
+<meta property="article:modified_time" content="2022-05-19T03:57:47.091Z">
+<meta property="article:author" content="Sylavin">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/zhou71896/2018/03/16/java%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>java常用面试题 | 番茄炒蛋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">番茄炒蛋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2018/03/16/java%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sylavin">
+      <meta itemprop="description" content="简单高效">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄炒蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java常用面试题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-16 13:25:14" itemprop="dateCreated datePublished" datetime="2018-03-16T13:25:14+08:00">2018-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 11:57:47" itemprop="dateModified" datetime="2022-05-19T11:57:47+08:00">2022-05-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-什么是可变参数"><a href="#1-什么是可变参数" class="headerlink" title="1.什么是可变参数?"></a>1.什么是可变参数?</h2><p>  在 Java 5 中提供了变长参数，允许在调用方法时传入不定长度的参数。<br>  变长参数是Java的一个语法糖，本质上还是基于数组的实现:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void foo(String... args);</span><br><span class="line">void foo(String[] args);</span><br></pre></td></tr></table></figure>
+<h2 id="2-断言的用途"><a href="#2-断言的用途" class="headerlink" title="2.断言的用途?"></a>2.断言的用途?</h2><p>断言是在Java1.4中引入的。它能让验证假设。如果断言失败（即返回false），就会抛出AssertionError（如果启用断言）。</p>
+<h2 id="3-什么时候使用断言"><a href="#3-什么时候使用断言" class="headerlink" title="3.什么时候使用断言?"></a>3.什么时候使用断言?</h2><p>　1.编写代码时，总是会做出一些假设，断言就是用于在代码中捕捉这些假设。断言表示为一些布尔表达式，程序员相信在程序中的某个特定点该表达式值为真，可以在任何时候启用和禁用断言验证，因此可以在测试时启用断言而在部署时禁用断言。同样，程序投入运行后，最终用户在遇到问题时可以重新启用断言。<br>　2.使用断言可以创建更稳定、品质更好且 不易于出错的代码。当需要在一个值为FALSE时中断当前操作的话，可以使用断言。单元测试必须使用断言（Junit&#x2F;JunitX）。<br>　3.除了类型检查和单元测试外，断言还提供了一种确定各种特性是否在程序中得到维护的极好的方法</p>
+<h2 id="4-什么是垃圾回收"><a href="#4-什么是垃圾回收" class="headerlink" title="4.什么是垃圾回收?"></a>4.什么是垃圾回收?</h2><p>  垃圾收集GC（Garbage Collection）是Java语言的核心技术之一，之前我们曾专门探讨过Java 7新增的垃圾回收器G1的新特性，但在JVM的内部运行机制上看，Java的垃圾回收原理与机制并未改变。垃圾收集的目的在于清除不再使用的对象。<br>GC通过确定对象是否被活动对象引用来确定是否收集该对象。</p>
+<h2 id="5-用一个例子解释垃圾回收"><a href="#5-用一个例子解释垃圾回收" class="headerlink" title="5.用一个例子解释垃圾回收?"></a>5.用一个例子解释垃圾回收?</h2><p>比如你运行一个程序,是不是要先把程序代码放到内存里执行?<br>执行完了,这段代码就会一直存在内存中,占用了内存的使用空间,如果是C语言的话,是要程序员在设计程序的时候用一个垃圾回收的指令把这段程序代码从内存中清理掉,但是java的话,程序员是不用再编写一个清理程序代码垃圾回收的语句的,而是由java的虚拟机垃圾回收机制自动执行,就是说,每隔一段时间java虚拟机会自动检测内存中是否存在没用的程序代码在占用内存,如果是的话就会把这些没用的或者使用过的内存中的代码清理掉,一般是说回收了垃圾所以说java程序有时候会觉得比较占内存的原因也是这个,不过因为java虚拟机有这个回收垃圾的机制,方便了程序员编写代码。</p>
+<h2 id="6-什么时候运行垃圾回收"><a href="#6-什么时候运行垃圾回收" class="headerlink" title="6.什么时候运行垃圾回收?"></a>6.什么时候运行垃圾回收?</h2><p>垃圾收集器跟踪每一个对象，收集那些不可触及的对象（即该对象不再被程序引用 了），回收其占有的内存空间。但在进行垃圾收集的时候，垃圾收集器会调用该对象的finalize(   )方法（如果有）。如果在finalize()方法中，又使得该对象被程序引用(俗称复活了)，则该对象就变成了可触及的对象，暂时不会被垃圾收集了。但是由于每个对象只能调用一次finalize(   )方法，所以每个对象也只可能 “复活 “一次。</p>
+<h2 id="7-垃圾回收的最佳做法"><a href="#7-垃圾回收的最佳做法" class="headerlink" title="7.垃圾回收的最佳做法?"></a>7.垃圾回收的最佳做法?</h2><p>用编程的方式，我们可以要求(记住这只是一个请求——不是一个命令)JVM通过调用System.gc()方法来运行垃圾回收。<br>当内存已满，且堆上没有对象可用于垃圾回收时，JVM可能会抛出OutOfMemoryException。<br>对象在被垃圾回收从堆上删除之前，会运行finalize()方法。我们建议不要用finalize()方法写任何代码。</p>
+<h2 id="8-什么是初始化数据块"><a href="#8-什么是初始化数据块" class="headerlink" title="8.什么是初始化数据块?"></a>8.什么是初始化数据块?</h2><p>初始化数据块——当创建对象或加载类时运行的代码。<br>有两种类型的初始化数据块：<br>1、静态初始化器：加载类时运行的的代码；<br>2、实例初始化器：创建新对象时运行的代码。</p>
+<h2 id="9-什么是静态初始化器？"><a href="#9-什么是静态初始化器？" class="headerlink" title="9.什么是静态初始化器？"></a>9.什么是静态初始化器？</h2><p>　　静态初始化器是由关键字static引导的一对大括号括起的语句组。它的作用与类的构造函数有些相似，都用来完成初始化的工作，但是静态初始化器与构造函数有三点根本的不同：<br>　　（1）构造函数是对每个新创建的对象初始化，而静态初始化器是对每个类进行初始化；<br>　　（2）构造函数是在用new运算符产生新对象时由系统自动执行，而静态初始化器则是在它所属的类加载入内存时由系统调用运行的；<br>　　（3）不同于构造函数，静态初始化器不是方法，没有方法名、返回值和参数列表。</p>
+<h2 id="10-什么是实例初始化块？"><a href="#10-什么是实例初始化块？" class="headerlink" title="10.什么是实例初始化块？"></a>10.什么是实例初始化块？</h2><p>实例初始化就是在内存中开辟一个类的对象  如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Animal</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">Animal</span><span class="params">()</span>&#123; &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">mthod</span><span class="params">()</span>&#123;  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在main函数中通过语句 Animal a &#x3D; new Animal();<br>表示把类Animal实例化，a为其对象引用</p>
+<h2 id="11-什么是正则表达式"><a href="#11-什么是正则表达式" class="headerlink" title="11.什么是正则表达式?"></a>11.什么是正则表达式?</h2><p>正则表达式，又称规则表达式。（英语：Regular Expression，在代码中常简写为regex、regexp或RE），计算机科学的一个概念。正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本。</p>
+<h2 id="12-什么是令牌化？"><a href="#12-什么是令牌化？" class="headerlink" title="12.什么是令牌化？"></a>12.什么是令牌化？</h2><p>令牌化是指在分隔符的基础上将一个字符串分割为若干个子字符串。</p>
+<h2 id="13-给出令牌化的例子"><a href="#13-给出令牌化的例子" class="headerlink" title="13.给出令牌化的例子?"></a>13.给出令牌化的例子?</h2><p>例如，分隔符；分割字符串ac;bd;def;e为四个子字符串ac，bd，def和e。<br>分隔符自身也可以是一个常见正则表达式。<br>String.split(regex)函数将regex作为参数。</p>
+<h2 id="14-如何使用扫描器类-Scanner-Class-令牌化"><a href="#14-如何使用扫描器类-Scanner-Class-令牌化" class="headerlink" title="14.如何使用扫描器类(Scanner Class)令牌化?"></a>14.如何使用扫描器类(Scanner Class)令牌化?</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">tokenizeUsingScanner</span><span class="params">(String string,String regex)</span> &#123;</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(string);</span><br><span class="line">    scanner.useDelimiter(regex);</span><br><span class="line">    List&lt;String&gt; matches = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">    <span class="keyword">while</span>(scanner.hasNext())&#123;</span><br><span class="line">        matches.add(scanner.next());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(matches);</span><br><span class="line">&#125;</span><br><span class="line">tokenizeUsingScanner(<span class="string">&quot;ac;bd;def;e&quot;</span>,<span class="string">&quot;;&quot;</span>);<span class="comment">//[ac, bd, def, e]</span></span><br></pre></td></tr></table></figure>
+<h2 id="15-如何添加小时-hour-到一个日期对象-Date-Objects"><a href="#15-如何添加小时-hour-到一个日期对象-Date-Objects" class="headerlink" title="15.如何添加小时(hour)到一个日期对象(Date Objects)?"></a>15.如何添加小时(hour)到一个日期对象(Date Objects)?</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="comment">//Increase time by 6 hrs</span></span><br><span class="line">date.setTime(date.getTime() + <span class="number">6</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>);</span><br><span class="line">System.out.println(date);</span><br><span class="line"><span class="comment">//Decrease time by 6 hrs</span></span><br><span class="line">date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">date.setTime(date.getTime() - <span class="number">6</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>);</span><br><span class="line">System.out.println(date);</span><br></pre></td></tr></table></figure>
+<h2 id="16-如何格式化日期对象"><a href="#16-如何格式化日期对象" class="headerlink" title="16.如何格式化日期对象?"></a>16.如何格式化日期对象?</h2><p>格式化日期需要使用DateFormat类完成。让我们看几个例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(DateFormat.getDateInstance(</span><br><span class="line">        DateFormat.FULL, <span class="keyword">new</span> <span class="title class_">Locale</span>(<span class="string">&quot;it&quot;</span>, <span class="string">&quot;IT&quot;</span>))</span><br><span class="line">        .format(date));<span class="comment">//marted“ 16 ottobre 2012</span></span><br><span class="line">System.out.println(DateFormat.getDateInstance(</span><br><span class="line">        DateFormat.FULL, Locale.ITALIAN)</span><br><span class="line">        .format(date));<span class="comment">//marted“ 16 ottobre 2012</span></span><br><span class="line"><span class="comment">//This uses default locale US</span></span><br><span class="line">System.out.println(DateFormat.getDateInstance(</span><br><span class="line">        DateFormat.FULL).format(date));<span class="comment">//Tuesday, October 16, 2012</span></span><br><span class="line">System.out.println(DateFormat.getDateInstance()</span><br><span class="line">        .format(date));<span class="comment">//Oct 16, 2012</span></span><br><span class="line">System.out.println(DateFormat.getDateInstance(</span><br><span class="line">        DateFormat.SHORT).format(date));<span class="comment">//10/16/12</span></span><br><span class="line">System.out.println(DateFormat.getDateInstance(</span><br><span class="line">        DateFormat.MEDIUM).format(date));<span class="comment">//Oct 16, 2012</span></span><br><span class="line">System.out.println(DateFormat.getDateInstance(</span><br><span class="line">        DateFormat.LONG).format(date));<span class="comment">//October 16, 2012</span></span><br></pre></td></tr></table></figure>
+<h2 id="17-java中日历类-Calendar-Class-的用途"><a href="#17-java中日历类-Calendar-Class-的用途" class="headerlink" title="17.java中日历类(Calendar Class)的用途?"></a>17.java中日历类(Calendar Class)的用途?</h2><p>Calendar类在Java中用于处理日期。Calendar类提供了增加和减少天数、月数和年数的简便方法。它还提供了很多与日期有关的细节（这一年的哪一天？哪一周？等等）</p>
+<h2 id="18-如何在Java中获取日历类的实例"><a href="#18-如何在Java中获取日历类的实例" class="headerlink" title="18.如何在Java中获取日历类的实例?"></a>18.如何在Java中获取日历类的实例?</h2><p>Calendar类不能通过使用new Calendar创建。得到Calendar类实例的最好办法是在Calendar中使用getInstance() static方法。</p>
+<h2 id="19-解释一些日历类中的重要方法"><a href="#19-解释一些日历类中的重要方法" class="headerlink" title="19.解释一些日历类中的重要方法?"></a>19.解释一些日历类中的重要方法?</h2><p>在Calendar对象上设置日（day），月（month）或年（year）不难。对Day，Month或Year调用恰当Constant的set方法。下一个参数就是值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">calendar.set(Calendar.DATE, <span class="number">24</span>);</span><br><span class="line">calendar.set(Calendar.MONTH, <span class="number">8</span>);<span class="comment">//8 - September</span></span><br><span class="line">calendar.set(Calendar.YEAR, <span class="number">2010</span>);</span><br><span class="line">System.out.println(calendar.get(Calendar.YEAR));<span class="comment">//2010</span></span><br><span class="line">System.out.println(calendar.get(Calendar.MONTH));<span class="comment">//8</span></span><br><span class="line">System.out.println(calendar.get(Calendar.DATE));<span class="comment">//24</span></span><br><span class="line">System.out.println(calendar.get(Calendar.WEEK_OF_MONTH));<span class="comment">//4</span></span><br><span class="line">System.out.println(calendar.get(Calendar.WEEK_OF_YEAR));<span class="comment">//39</span></span><br><span class="line">System.out.println(calendar.get(Calendar.DAY_OF_YEAR));<span class="comment">//267</span></span><br><span class="line">System.out.println(calendar.getFirstDayOfWeek());<span class="comment">//1 -&gt; Calendar.SUNDAY</span></span><br></pre></td></tr></table></figure>
+<h2 id="20-数字格式化类-Number-Format-Class-的用途"><a href="#20-数字格式化类-Number-Format-Class-的用途" class="headerlink" title="20.数字格式化类(Number Format Class)的用途?"></a>20.数字格式化类(Number Format Class)的用途?</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数字格式用于格式化数字到不同的区域和不同格式中。</span></span><br><span class="line"><span class="comment">//使用默认语言环境的数字格式</span></span><br><span class="line">System.out.println(NumberFormat.getInstance().format(<span class="number">321.24f</span>));<span class="comment">//321.24</span></span><br><span class="line"><span class="comment">//使用区域设置的数字格式</span></span><br><span class="line"><span class="comment">//使用荷兰语言环境格式化数字：</span></span><br><span class="line">System.out.println(NumberFormat.getInstance(<span class="keyword">new</span> <span class="title class_">Locale</span>(<span class="string">&quot;nl&quot;</span>)).format(<span class="number">4032.3f</span>));<span class="comment">//4.032,3</span></span><br><span class="line"><span class="comment">//使用德国语言环境格式化数字：</span></span><br><span class="line">System.out.println(NumberFormat.getInstance(Locale.GERMANY).format(<span class="number">4032.3f</span>));<span class="comment">//4.032,3</span></span><br><span class="line"><span class="comment">//使用默认语言环境格式化货币</span></span><br><span class="line">System.out.println(NumberFormat.getCurrencyInstance().format(<span class="number">40324.31f</span>));<span class="comment">//$40,324.31</span></span><br><span class="line"><span class="comment">//使用区域设置格式化货币</span></span><br><span class="line"><span class="comment">//使用荷兰语言环境格式化货币：</span></span><br><span class="line">System.out.println(NumberFormat.getCurrencyInstance(<span class="keyword">new</span> <span class="title class_">Locale</span>(<span class="string">&quot;nl&quot;</span>)).format(<span class="number">40324.31f</span>));<span class="comment">//? 40.324,31</span></span><br></pre></td></tr></table></figure>
+<h2 id="21-Spring-事务的隔离性，说说每个隔离性的区别"><a href="#21-Spring-事务的隔离性，说说每个隔离性的区别" class="headerlink" title="21.Spring 事务的隔离性，说说每个隔离性的区别"></a>21.Spring 事务的隔离性，说说每个隔离性的区别</h2><p>Isolation Level(事务隔离等级):<br>1、Serializable：最严格的级别，事务串行执行，资源消耗最大；<br>2、REPEATABLE READ：保证了一个事务不会修改已经由另一个事务读取但未提交（回滚）的数据。避免了“脏读取”和“不可重复读取”的情况，但是带来了更多的性能损失。<br>3、READ COMMITTED:大多数主流数据库的默认事务等级，保证了一个事务不会读到另一个并行事务已修改但未提交的数据，避免了“脏读取”。该级别适用于大多数系统。<br>4、Read Uncommitted：保证了读取过程中不会读取到非法数据。</p>
+<h2 id="22-Spring-事务的传播行为，说说每个传播行为的区别"><a href="#22-Spring-事务的传播行为，说说每个传播行为的区别" class="headerlink" title="22.Spring 事务的传播行为，说说每个传播行为的区别"></a>22.Spring 事务的传播行为，说说每个传播行为的区别</h2><p>Propagation<br>PROPAGATION_REQUIRED–支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br>PROPAGATION_SUPPORTS–支持当前事务，如果当前没有事务，就以非事务方式执行。<br>PROPAGATION_MANDATORY–支持当前事务，如果当前没有事务，就抛出异常。<br>PROPAGATION_REQUIRES_NEW–新建事务，如果当前存在事务，把当前事务挂起。<br>PROPAGATION_NOT_SUPPORTED–以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br>PROPAGATION_NEVER–以非事务方式执行，如果当前存在事务，则抛出异常。</p>
+<h2 id="23-hibernate跟Mybatis-x2F-ibatis的区别-为什么选择使用它"><a href="#23-hibernate跟Mybatis-x2F-ibatis的区别-为什么选择使用它" class="headerlink" title="23.hibernate跟Mybatis&#x2F;ibatis的区别,为什么选择使用它?"></a>23.hibernate跟Mybatis&#x2F;ibatis的区别,为什么选择使用它?</h2><p>hibernate的真正掌握（封装的功能和特性非常多）要比Mybatis来得难。<br>在真正产品级应用上要用Hibernate，不仅对开发人员的要求高，hibernate往往还不适合（多表关联查询等）。<br>Hibernate:</p>
+<ul>
+<li>制定合理的缓存策略；</li>
+<li>尽量使用延迟加载特性；</li>
+<li>采用合理的Session管理机制；</li>
+<li>使用批量抓取，设定合理的批处理参数（batch_size）</li>
+<li>进行合理的O&#x2F;R映射设计<br>Mybatis：</li>
+<li>MyBatis在Session方面和Hibernate的Session生命周期是一致的，同样需要合理的Session管理机制。MyBatis同样具有二级缓存机制。 </li>
+<li>MyBatis可以进行详细的SQL优化设计<br> SQL优化方面<br>Hibernate的查询会将表中的所有字段查询出来，这一点会有性能消耗。<br>Hibernate也可以自己写SQL来指定需要查询的字段，但这样就破坏了Hibernate开发的简洁性。<br>Mybatis的SQL是手动编写的，所以可以按需求指定查询的字段。<br>总的来说，Hibernate使用的是封装好，通用的SQL来应付所有场景，而Mybatis是针对响应的场景设计的SQL。Mybatis的SQL会更灵活、可控性更好、更优化。<br>实际项目关于Hibernate和Mybatis的选型：<br> 移植性<br>Hibernate与具体数据库的关联只需在XML文件中配置即可，所有的HQL语句与具体使用的数据库无关，移植性很好。<br>MyBatis项目中所有的SQL语句都是依赖所用的数据库的，所以不同数据库类型的支持不好。<br> JDBC<br>Hibernate是在JDBC上进行了一次封装。<br>Mybatis是基于原生的JDBC的。Mybatis有运行速度上的优势。<br> 功能、特性丰富程度<br>Hibernate提供了诸多功能和特性。要全掌握很难。<br>Mybatis 自身功能很有限，但Mybatis支持plugin，可以使用开源的plugin来扩展功能。<br> 动态SQL<br>Mybatis mapper xml 支持动态SQL<br>Hibernate不支持<br>1、数据量：有以下情况最好选用Mybatis<br>如果有超过千万级别的表<br>如果有单次业务大批量数据提交的需求（百万条及以上的），这个尤其不建议用Hibernate<br>如果有单次业务大批量读取需求（百万条及以上的）(注，hibernate多表查询比较费劲，用不好很容易造成性能问题)<br>2、表关联复杂度<br>如果主要业务表的关联表超过20个（大概值），不建议使用hibernate<br>3、人员<br>如果开发成员多数不是多年使用hibernate的情况，建议使用mybatis<br>4、数据库对于项目的重要程度<br>如果项目要求对于数据库可控性好，可深度调优，用mybatis</li>
+</ul>
+<h2 id="24-structs跟Spring-mvc的优缺点，让你选会如何选择"><a href="#24-structs跟Spring-mvc的优缺点，让你选会如何选择" class="headerlink" title="24.structs跟Spring mvc的优缺点，让你选会如何选择?"></a>24.structs跟Spring mvc的优缺点，让你选会如何选择?</h2><p>1、spring3开发效率高于struts；<br>2、spring3 mvc可以认为已经100%零配置；<br>3、struts2是类级别的拦截， 一个类对应一个request上下文，springmvc是方法级别的拦截，一个方法对应一个request上下文，而方法同时又跟一个url对应。所以说从架构本身上 spring3 mvc就容易实现restful url，而struts2的架构实现起来要费劲。因为struts2 action的一个方法可以对应一个url，而其类属性却被所有方法共享，这也就无法用注解或其他方式标识其所属方法了；<br>4、spring3mvc的方法之间基本上独立的，独享request response数据，请求数据通过参数获取，处理结果通过ModelMap交回给框架，方法之间不共享变量。而struts2搞的就比较乱，虽然方法之间也是独立的，但其所有Action变量是共享的。这不会影响程序运行，却给编码读程序时带来麻烦 ；<br>5、由于Struts2需要针对每个Request进行封装，把Request，Session等Servlet生命周期的变量封装成一个一个Map，供给每个Action使用，并保证线程安全。所以在原则上，是比较耗费内存的</p>
+<h2 id="25-简单说说Spring事务机制"><a href="#25-简单说说Spring事务机制" class="headerlink" title="25.简单说说Spring事务机制"></a>25.简单说说Spring事务机制</h2><p>Spring事务管理主要包括3个接口，Spring的事务主要是由他们三个共同完成的。<br>1.PlatformTransactionManager：事务管理器–主要用于平台相关事务的管理<br> 主要有三个方法：<br>      commit  事务提交；<br>      rollback  事务回滚；<br>      getTransaction  获取事务状态。<br>2.TransactionDefinition：事务定义信息–用来定义事务相关的属性，给事务管理器PlatformTransactionManager使用<br>这个接口有下面四个主要方法：<br>getIsolationLevel：获取隔离级别；<br>getPropagationBehavior：获取传播行为；<br>getTimeout：获取超时时间；<br>isReadOnly：是否只读（保存、更新、删除时属性变为false–可读写，查询时为true–只读）<br>事务管理器能够根据这个返回值进行优化，这些事务的配置信息，都可以通过配置文件进行配置。<br>3.TransactionStatus：事务具体运行状态–事务管理过程中，每个时间点事务的状态信息。<br>例如它的几个方法：<br>hasSavepoint()：返回这个事务内部是否包含一个保存点，<br>isCompleted()：返回该事务是否已完成，也就是说，是否已经提交或回滚<br>isNewTransaction()：判断当前事务是否是一个新事务<br>声明式事务的优缺点：<br>优点<br>不需要在业务逻辑代码中编写事务相关代码，只需要在配置文件配置或使用注解（@Transaction），这种方式没有侵入性。<br>缺点<br>声明式事务的最细粒度作用于方法上，如果像代码块也有事务需求，只能变通下，将代码块变为方法。</p>
+<h2 id="26-Spring-4-0新特性"><a href="#26-Spring-4-0新特性" class="headerlink" title="26.Spring 4.0新特性"></a>26.Spring 4.0新特性</h2><p>pring4新特性——泛型限定式依赖注入<br>Spring4新特性——核心容器的其他改进<br>Spring4新特性——Web开发的增强<br>Spring4新特性——集成Bean Validation 1.1(JSR-349)到SpringMVC<br>Spring4新特性——Groovy Bean定义DSL<br>Spring4新特性——更好的Java泛型操作API<br>Spring4新特性——JSR310日期API的支持<br>Spring4新特性——注解、脚本、任务、MVC等其他特性改进 </p>
+<h2 id="27-weblogic-负载均衡的原理和集群的配置"><a href="#27-weblogic-负载均衡的原理和集群的配置" class="headerlink" title="27.weblogic 负载均衡的原理和集群的配置"></a>27.weblogic 负载均衡的原理和集群的配置</h2><p>Weblogic支持集群技术，即让一组Server指向同一域名一起工作从而提供一个更强大、更可靠的应用平台。对于客户端而言，无论Cluster中有几个Server在工作，看上去都是一个。集群技术有两个最明显的特色：<br>(1)可伸缩性：Cluster对加入其中的Server在性能上没有限制，为了提高性能，当客户端的请求大幅增加时，可以动态地向Cluster中添加Server。并且，配置Cluster当一台机器的资源没有被完全利用时，可以在同一机器上启动多个Server，但要求每一个Server使用不同的IP，而不能用同一IP的不同端口。<br>(2)高可用性：由于在Cluster中同一service在多个Server上同时存放或放在一个共享文件系统中，因此相同的请求可以有多个Server提供，并且Server间还可以复制状态信息。这样，当其中某一Server宕机或无法响应请求时，其它的Server会立即接管它的任务，从而把应用和客户端完全隔离开来。</p>
+<blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/zdwzzu2006/article/details/6528641">blog.csdn.net/zdwzzu2006/article/details/6528641</a></cite></footer></blockquote>
+<h2 id="28-Nginx-Tomcat-Redis-实现负载均衡，资源分离，session共享"><a href="#28-Nginx-Tomcat-Redis-实现负载均衡，资源分离，session共享" class="headerlink" title="28.Nginx+Tomcat+Redis 实现负载均衡，资源分离，session共享"></a>28.Nginx+Tomcat+Redis 实现负载均衡，资源分离，session共享</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/u014756827/article/details/51545766">blog.csdn.net/u014756827/article/details/51545766</a></cite></footer></blockquote>
+<h2 id="29-nginx配置文件详解—nginx-conf"><a href="#29-nginx配置文件详解—nginx-conf" class="headerlink" title="29.nginx配置文件详解—nginx.conf"></a>29.nginx配置文件详解—nginx.conf</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/tjcyjd/article/details/50695922">blog.csdn.net/tjcyjd/article/details/50695922</a></cite></footer></blockquote>
+<h2 id="30-web如何项目优化"><a href="#30-web如何项目优化" class="headerlink" title="30.web如何项目优化"></a>30.web如何项目优化</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/391849317">bbs.csdn.net/topics/391849317</a></cite></footer></blockquote>
+<h2 id="31-单例模式有几种？如何优化"><a href="#31-单例模式有几种？如何优化" class="headerlink" title="31.单例模式有几种？如何优化?"></a>31.单例模式有几种？如何优化?</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Ycheng/p/7169381.html">www.cnblogs.com/Ycheng/p/7169381.html</a></cite></footer></blockquote>
+<h2 id="32-简单说说线程池的原理和实现"><a href="#32-简单说说线程池的原理和实现" class="headerlink" title="32.简单说说线程池的原理和实现"></a>32.简单说说线程池的原理和实现</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/he90227/article/details/52576452">blog.csdn.net/he90227/article/details/52576452</a></cite></footer></blockquote>
+<h2 id="33-项目并发如何处理-web项目"><a href="#33-项目并发如何处理-web项目" class="headerlink" title="33.项目并发如何处理?(web项目)"></a>33.项目并发如何处理?(web项目)</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lr393993507/p/5909804.html">www.cnblogs.com/lr393993507/p/5909804.html</a></cite></footer></blockquote>
+<h2 id="34-简单说说功能权限存在的水平权限漏洞和垂直权限漏洞的场景和解决办法-目前权限界别就是功能权限"><a href="#34-简单说说功能权限存在的水平权限漏洞和垂直权限漏洞的场景和解决办法-目前权限界别就是功能权限" class="headerlink" title="34.简单说说功能权限存在的水平权限漏洞和垂直权限漏洞的场景和解决办法(目前权限界别就是功能权限)"></a>34.简单说说功能权限存在的水平权限漏洞和垂直权限漏洞的场景和解决办法(目前权限界别就是功能权限)</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://www.bubuko.com/infodetail-196677.html">www.bubuko.com/infodetail-196677.html</a></cite></footer></blockquote>
+<h2 id="35-平台上的图片如何防盗链"><a href="#35-平台上的图片如何防盗链" class="headerlink" title="35.平台上的图片如何防盗链"></a>35.平台上的图片如何防盗链</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/likaibk/article/details/52879514">blog.csdn.net/likaibk/article/details/52879514</a></cite></footer></blockquote>
+<h2 id="36-如何区分上传的图片是不是木马"><a href="#36-如何区分上传的图片是不是木马" class="headerlink" title="36.如何区分上传的图片是不是木马?"></a>36.如何区分上传的图片是不是木马?</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/lenny_cl/article/details/55045866">blog.csdn.net/lenny_cl/article/details/55045866</a></cite></footer></blockquote>
+<h2 id="37-消息队列的原理和实现"><a href="#37-消息队列的原理和实现" class="headerlink" title="37.消息队列的原理和实现"></a>37.消息队列的原理和实现</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://blog.csdn.net/lzq_csdn_th/article/details/51945408">blog.csdn.net/lzq_csdn_th/article/details/51945408</a></cite></footer></blockquote>
+<h2 id="38-mysql查询字段区不区分大小写-区不区分大小的应用含义有哪些"><a href="#38-mysql查询字段区不区分大小写-区不区分大小的应用含义有哪些" class="headerlink" title="38.mysql查询字段区不区分大小写?区不区分大小的应用含义有哪些?"></a>38.mysql查询字段区不区分大小写?区不区分大小的应用含义有哪些?</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="http://www.jb51.net/article/70884.htm">www.jb51.net/article/70884.htm</a></cite></footer></blockquote>
+<h2 id="39-简单说说数据库集群和负载均衡，分布式"><a href="#39-简单说说数据库集群和负载均衡，分布式" class="headerlink" title="39.简单说说数据库集群和负载均衡，分布式"></a>39.简单说说数据库集群和负载均衡，分布式</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20695647">www.zhihu.com/question/20695647</a></cite></footer></blockquote>
+<h2 id="40存储过程的结构和优点"><a href="#40存储过程的结构和优点" class="headerlink" title="40存储过程的结构和优点"></a>40存储过程的结构和优点</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ego/archive/2012/12/06/2804592.html">www.cnblogs.com/ego/archive/2012/12/06/2804592.html</a></cite></footer></blockquote>
+<h2 id="41触发器的原理和作用"><a href="#41触发器的原理和作用" class="headerlink" title="41触发器的原理和作用"></a>41触发器的原理和作用</h2><blockquote><footer><strong>@传送门</strong><cite><a target="_blank" rel="noopener" href="https://www.cnblogs.com/l1pe1/p/7910395.html">www.cnblogs.com/l1pe1/p/7910395.html</a></cite></footer></blockquote>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/15/%E6%9E%B6%E6%9E%84%E5%B8%88%E7%9B%B8%E5%85%B3%E7%9A%84%E9%9C%80%E6%B1%82/" rel="prev" title="架构师相关">
+      <i class="fa fa-chevron-left"></i> 架构师相关
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/03/19/springCloud1/" rel="next" title="SpringCloud的基本介绍">
+      SpringCloud的基本介绍 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">1.什么是可变参数?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%96%AD%E8%A8%80%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">2.</span> <span class="nav-text">2.断言的用途?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E6%96%AD%E8%A8%80"><span class="nav-number">3.</span> <span class="nav-text">3.什么时候使用断言?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">4.</span> <span class="nav-text">4.什么是垃圾回收?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%94%A8%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%E8%A7%A3%E9%87%8A%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">5.</span> <span class="nav-text">5.用一个例子解释垃圾回收?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%BF%90%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">6.</span> <span class="nav-text">6.什么时候运行垃圾回收?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E6%9C%80%E4%BD%B3%E5%81%9A%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">7.垃圾回收的最佳做法?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="nav-number">8.</span> <span class="nav-text">8.什么是初始化数据块?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%99%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%99%A8%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">9.什么是静态初始化器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%9E%E4%BE%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%97%EF%BC%9F"><span class="nav-number">10.</span> <span class="nav-text">10.什么是实例初始化块？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">11.</span> <span class="nav-text">11.什么是正则表达式?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%A4%E7%89%8C%E5%8C%96%EF%BC%9F"><span class="nav-number">12.</span> <span class="nav-text">12.什么是令牌化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%BB%99%E5%87%BA%E4%BB%A4%E7%89%8C%E5%8C%96%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">13.</span> <span class="nav-text">13.给出令牌化的例子?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%89%AB%E6%8F%8F%E5%99%A8%E7%B1%BB-Scanner-Class-%E4%BB%A4%E7%89%8C%E5%8C%96"><span class="nav-number">14.</span> <span class="nav-text">14.如何使用扫描器类(Scanner Class)令牌化?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E5%B0%8F%E6%97%B6-hour-%E5%88%B0%E4%B8%80%E4%B8%AA%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1-Date-Objects"><span class="nav-number">15.</span> <span class="nav-text">15.如何添加小时(hour)到一个日期对象(Date Objects)?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-%E5%A6%82%E4%BD%95%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1"><span class="nav-number">16.</span> <span class="nav-text">16.如何格式化日期对象?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-java%E4%B8%AD%E6%97%A5%E5%8E%86%E7%B1%BB-Calendar-Class-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">17.</span> <span class="nav-text">17.java中日历类(Calendar Class)的用途?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-%E5%A6%82%E4%BD%95%E5%9C%A8Java%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%97%A5%E5%8E%86%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-number">18.</span> <span class="nav-text">18.如何在Java中获取日历类的实例?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-%E8%A7%A3%E9%87%8A%E4%B8%80%E4%BA%9B%E6%97%A5%E5%8E%86%E7%B1%BB%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E6%96%B9%E6%B3%95"><span class="nav-number">19.</span> <span class="nav-text">19.解释一些日历类中的重要方法?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%B1%BB-Number-Format-Class-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">20.</span> <span class="nav-text">20.数字格式化类(Number Format Class)的用途?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-Spring-%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E6%80%A7%EF%BC%8C%E8%AF%B4%E8%AF%B4%E6%AF%8F%E4%B8%AA%E9%9A%94%E7%A6%BB%E6%80%A7%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">21.</span> <span class="nav-text">21.Spring 事务的隔离性，说说每个隔离性的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-Spring-%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA%EF%BC%8C%E8%AF%B4%E8%AF%B4%E6%AF%8F%E4%B8%AA%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">22.</span> <span class="nav-text">22.Spring 事务的传播行为，说说每个传播行为的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-hibernate%E8%B7%9FMybatis-x2F-ibatis%E7%9A%84%E5%8C%BA%E5%88%AB-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8%E5%AE%83"><span class="nav-number">23.</span> <span class="nav-text">23.hibernate跟Mybatis&#x2F;ibatis的区别,为什么选择使用它?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-structs%E8%B7%9FSpring-mvc%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%8C%E8%AE%A9%E4%BD%A0%E9%80%89%E4%BC%9A%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9"><span class="nav-number">24.</span> <span class="nav-text">24.structs跟Spring mvc的优缺点，让你选会如何选择?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-%E7%AE%80%E5%8D%95%E8%AF%B4%E8%AF%B4Spring%E4%BA%8B%E5%8A%A1%E6%9C%BA%E5%88%B6"><span class="nav-number">25.</span> <span class="nav-text">25.简单说说Spring事务机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-Spring-4-0%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">26.</span> <span class="nav-text">26.Spring 4.0新特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-weblogic-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E9%9B%86%E7%BE%A4%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">27.</span> <span class="nav-text">27.weblogic 负载均衡的原理和集群的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-Nginx-Tomcat-Redis-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%8C%E8%B5%84%E6%BA%90%E5%88%86%E7%A6%BB%EF%BC%8Csession%E5%85%B1%E4%BA%AB"><span class="nav-number">28.</span> <span class="nav-text">28.Nginx+Tomcat+Redis 实现负载均衡，资源分离，session共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3%E2%80%94nginx-conf"><span class="nav-number">29.</span> <span class="nav-text">29.nginx配置文件详解—nginx.conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-web%E5%A6%82%E4%BD%95%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96"><span class="nav-number">30.</span> <span class="nav-text">30.web如何项目优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E6%9C%89%E5%87%A0%E7%A7%8D%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96"><span class="nav-number">31.</span> <span class="nav-text">31.单例模式有几种？如何优化?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-%E7%AE%80%E5%8D%95%E8%AF%B4%E8%AF%B4%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-number">32.</span> <span class="nav-text">32.简单说说线程池的原理和实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-%E9%A1%B9%E7%9B%AE%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86-web%E9%A1%B9%E7%9B%AE"><span class="nav-number">33.</span> <span class="nav-text">33.项目并发如何处理?(web项目)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-%E7%AE%80%E5%8D%95%E8%AF%B4%E8%AF%B4%E5%8A%9F%E8%83%BD%E6%9D%83%E9%99%90%E5%AD%98%E5%9C%A8%E7%9A%84%E6%B0%B4%E5%B9%B3%E6%9D%83%E9%99%90%E6%BC%8F%E6%B4%9E%E5%92%8C%E5%9E%82%E7%9B%B4%E6%9D%83%E9%99%90%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%9C%BA%E6%99%AF%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95-%E7%9B%AE%E5%89%8D%E6%9D%83%E9%99%90%E7%95%8C%E5%88%AB%E5%B0%B1%E6%98%AF%E5%8A%9F%E8%83%BD%E6%9D%83%E9%99%90"><span class="nav-number">34.</span> <span class="nav-text">34.简单说说功能权限存在的水平权限漏洞和垂直权限漏洞的场景和解决办法(目前权限界别就是功能权限)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-%E5%B9%B3%E5%8F%B0%E4%B8%8A%E7%9A%84%E5%9B%BE%E7%89%87%E5%A6%82%E4%BD%95%E9%98%B2%E7%9B%97%E9%93%BE"><span class="nav-number">35.</span> <span class="nav-text">35.平台上的图片如何防盗链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%9B%BE%E7%89%87%E6%98%AF%E4%B8%8D%E6%98%AF%E6%9C%A8%E9%A9%AC"><span class="nav-number">36.</span> <span class="nav-text">36.如何区分上传的图片是不是木马?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#37-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-number">37.</span> <span class="nav-text">37.消息队列的原理和实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-mysql%E6%9F%A5%E8%AF%A2%E5%AD%97%E6%AE%B5%E5%8C%BA%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99-%E5%8C%BA%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%BA%94%E7%94%A8%E5%90%AB%E4%B9%89%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">38.</span> <span class="nav-text">38.mysql查询字段区不区分大小写?区不区分大小的应用含义有哪些?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-%E7%AE%80%E5%8D%95%E8%AF%B4%E8%AF%B4%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%8C%E5%88%86%E5%B8%83%E5%BC%8F"><span class="nav-number">39.</span> <span class="nav-text">39.简单说说数据库集群和负载均衡，分布式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E4%BC%98%E7%82%B9"><span class="nav-number">40.</span> <span class="nav-text">40存储过程的结构和优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="nav-number">41.</span> <span class="nav-text">41触发器的原理和作用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sylavin</p>
+  <div class="site-description" itemprop="description">简单高效</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sylavin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

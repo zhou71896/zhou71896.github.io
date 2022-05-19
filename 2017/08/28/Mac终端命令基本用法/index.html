@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简单高效  目录操作命令名   功能描述              使用举例mkdir   创建一个目录           mkdir dirnamermdir   删除一个目录           rmdir dirnamemvdir   移动或重命名一个目录  mvdir dir1 dir2cd  改变当前目录  cd dirnamepwd 显示当前目录的路径名  pwdls  显示当前目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac终端命令基本用法">
+<meta property="og:url" content="https://github.com/zhou71896/2017/08/28/Mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="番茄炒蛋">
+<meta property="og:description" content="简单高效  目录操作命令名   功能描述              使用举例mkdir   创建一个目录           mkdir dirnamermdir   删除一个目录           rmdir dirnamemvdir   移动或重命名一个目录  mvdir dir1 dir2cd  改变当前目录  cd dirnamepwd 显示当前目录的路径名  pwdls  显示当前目录">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-28T14:24:19.000Z">
+<meta property="article:modified_time" content="2022-05-19T03:57:47.088Z">
+<meta property="article:author" content="Sylavin">
+<meta property="article:tag" content="Mac">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/zhou71896/2017/08/28/Mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Mac终端命令基本用法 | 番茄炒蛋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">番茄炒蛋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/zhou71896/2017/08/28/Mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sylavin">
+      <meta itemprop="description" content="简单高效">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="番茄炒蛋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mac终端命令基本用法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-28 22:24:19" itemprop="dateCreated datePublished" datetime="2017-08-28T22:24:19+08:00">2017-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 11:57:47" itemprop="dateModified" datetime="2022-05-19T11:57:47+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mac%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">Mac相关</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>简单高效</endblockquote>
+
+<h2 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h2><p>命令名   功能描述              使用举例<br>mkdir   创建一个目录           mkdir dirname<br>rmdir   删除一个目录           rmdir dirname<br>mvdir   移动或重命名一个目录  mvdir dir1 dir2<br>cd  改变当前目录  cd dirname<br>pwd 显示当前目录的路径名  pwd<br>ls  显示当前目录的内容   ls -la<br>dircmp  比较两个目录的内容   dircmp dir1 dir2</p>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>命令名 功能描述    使用举例<br>cat 显示或连接文件 cat filename<br>pg  分页格式化显示文件内容 pg filename<br>more    分屏显示文件内容    more filename<br>od  显示非文本文件的内容  od -c filename<br>cp  复制文件或目录 cp file1 file2<br>rm  删除文件或目录 rm filename<br>mv  改变文件名或所在目录  mv file1 file2<br>ln  联接文件    ln -s file1 file2<br>find    使用匹配表达式查找文件 find . -name “*.c” -print<br>file    显示文件类型  file filename<br>open    使用默认的程序打开文件 open filename</p>
+<h2 id="选择操作"><a href="#选择操作" class="headerlink" title="选择操作"></a>选择操作</h2><p>命令名 功能描述    使用举例<br>head    显示文件的最初几行   head -20 filename<br>tail    显示文件的最后几行   tail -15 filename<br>cut 显示文件每行中的某些域 cut -f1,7 -d: &#x2F;etc&#x2F;passwd<br>colrm   从标准输入中删除若干列 colrm 8 20 file2<br>paste   横向连接文件  paste file1 file2<br>diff    比较并显示两个文件的差异    diff file1 file2<br>sed 非交互方式流编辑器   sed “s&#x2F;red&#x2F;green&#x2F;g” filename<br>grep    在文件中按模式查找   grep “^[a-zA-Z]” filename<br>awk 在文件中查找并处理模式 awk ‘{print $1 $1}’ filename<br>sort    排序或归并文件 sort -d -f -u file1<br>uniq    去掉文件中的重复行   uniq file1 file2<br>comm    显示两有序文件的公共和非公共行 comm file1 file2<br>wc  统计文件的字符数、词数和行数  wc filename<br>nl  给文件加上行号 nl file1 &gt;file2</p>
+<h2 id="安全操作"><a href="#安全操作" class="headerlink" title="安全操作"></a>安全操作</h2><p>命令名 功能描述    使用举例<br>passwd  修改用户密码  passwd<br>chmod   改变文件或目录的权限  chmod ug+x filename<br>umask   定义创建文件的权限掩码 umask 027<br>chown   改变文件或目录的属主  chown newowner filename<br>chgrp   改变文件或目录的所属组 chgrp staff filename<br>xlock   给终端上锁   xlock -remote</p>
+<h2 id="编程操作"><a href="#编程操作" class="headerlink" title="编程操作"></a>编程操作</h2><p>命令名    功能描述    使用举例<br>make    维护可执行程序的最新版本    make<br>touch   更新文件的访问和修改时间    touch -m 05202400 filename<br>dbx 命令行界面调试工具   dbx a.out<br>xde 图形用户界面调试工具  xde a.out</p>
+<h2 id="进程操作"><a href="#进程操作" class="headerlink" title="进程操作"></a>进程操作</h2><p>命令名    功能描述    使用举例<br>ps  显示进程当前状态    ps u<br>kill    终止进程    kill -9 30142<br>nice    改变待执行命令的优先级 nice cc -c *.c<br>renice  改变已运行进程的优先级 renice +20 32768</p>
+<h2 id="时间操作"><a href="#时间操作" class="headerlink" title="时间操作"></a>时间操作</h2><p>命令名 功能描述    使用举例<br>date    显示系统的当前日期和时间    date<br>cal 显示日历    cal 8 1996<br>time    统计程序的执行时间   time a.out</p>
+<h2 id="网络与通信操作"><a href="#网络与通信操作" class="headerlink" title="网络与通信操作"></a>网络与通信操作</h2><p>命令名    功能描述    使用举例<br>telnet  远程登录    telnet hpc.sp.net.edu.cn<br>rlogin  远程登录    rlogin hostname -l username<br>rsh 在远程主机执行指定命令 rsh f01n03 date<br>ftp 在本地主机与远程主机之间传输文件    ftp ftp.sp.net.edu.cn<br>rcp 在本地主机与远程主机 之间复制文件   rcp file1 host1:file2<br>ping    给一个网络主机发送 回应请求  ping hpc.sp.net.edu.cn<br>mail    阅读和发送电子邮件   mail<br>write   给另一用户发送报文   write username pts&#x2F;1<br>mesg    允许或拒绝接收报文   mesg n</p>
+<h2 id="Korn-Shell-命令"><a href="#Korn-Shell-命令" class="headerlink" title="Korn Shell 命令"></a>Korn Shell 命令</h2><p>命令名    功能描述    使用举例<br>history 列出最近执行过的 几条命令及编号    history<br>r   重复执行最近执行过的 某条命令 r -2<br>alias   给某个命令定义别名   alias del&#x3D;rm -i<br>unalias 取消对某个别名的定义  unalias del</p>
+<h2 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h2><p>命令名    功能描述    使用举例<br>uname   显示操作系统的有关信息 uname -a<br>clear   清除屏幕或窗口内容   clear<br>env 显示当前所有设置过的环境变量  env<br>who 列出当前登录的所有用户 who<br>whoami  显示当前正进行操作的用户名   whoami<br>tty 显示终端或伪终端的名称 tty<br>stty    显示或重置控制键定义  stty -a<br>du  查询磁盘使用情况    du -k subdir<br>df  显示文件系统的总空间和可用空间 df &#x2F;tmp<br>w   显示当前系统活动的总信息    w</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mac/" rel="tag"># Mac</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/15/Vim%E5%85%A5%E9%97%A8/" rel="prev" title="Vim入门">
+      <i class="fa fa-chevron-left"></i> Vim入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/29/Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" rel="next" title="Git使用教程">
+      Git使用教程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">目录操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">选择操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">安全操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">编程操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">进程操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">时间操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1%E6%93%8D%E4%BD%9C"><span class="nav-number">8.</span> <span class="nav-text">网络与通信操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Korn-Shell-%E5%91%BD%E4%BB%A4"><span class="nav-number">9.</span> <span class="nav-text">Korn Shell 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E5%91%BD%E4%BB%A4"><span class="nav-number">10.</span> <span class="nav-text">其它命令</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Sylavin</p>
+  <div class="site-description" itemprop="description">简单高效</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sylavin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
